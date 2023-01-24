@@ -5,6 +5,7 @@
 // 
 
 import UIKit
+import RealmSwift
 
 final class MainViewController: UIViewController {
 
@@ -181,29 +182,31 @@ final class MainViewController: UIViewController {
         return collectionView
     }()
 
-    private var todoLists: [TodoModel] = [
-        TodoModel(title: "hi", body: "bodyasldjaksdjfl;aksdfkadskflasdklfasldkfadkakdakfakfalkdakdfakdfakdlkjfakdjf;lakjfkldajsfkjadkfjakdjflaasdfasfasdfasdasdfasdfasfdasdfaf", date: "2023. 01. 17"),
-        TodoModel(title: "bye", body: "dd", date: "2023. 01. 17"),
-        TodoModel(title: "asdf", body: "ffff", date: "2023. 01. 18"),
-        TodoModel(title: "ffff", body: "ffff", date: "2023. 01. 19")
+    private let realm = try! Realm()
+
+    private var todoLists: [ProjectModel] = [
+//        TodoModel(title: "hi", body: "bodyasldjaksdjfl;aksdfkadskflasdklfasldkfadkakdakfakfalkdakdfakdfakdlkjfakdjf;lakjfkldajsfkjadkfjakdjflaasdfasfasdfasdasdfasdfasfdasdfaf", date: "2023. 01. 17"),
+//        TodoModel(title: "bye", body: "dd", date: "2023. 01. 17"),
+//        TodoModel(title: "asdf", body: "ffff", date: "2023. 01. 18"),
+//        TodoModel(title: "ffff", body: "ffff", date: "2023. 01. 19")
     ]
 
-    private var doingLists: [TodoModel] = [
-        TodoModel(title: "doing", body: "bodyasldjaksdjfl;aksdfkadskflasdklfasldkfadkakdakfakfalkdakdfakdfakdlkjfakdjf;lakjfkldajsfkjadkfjakdjflaasdfasfasdfasdasdfasdfasfdasdfaf", date: "2023. 02. 19"),
-        TodoModel(title: "dodo", body: "dd", date: "2022. 01. 19")
+    private var doingLists: [ProjectModel] = [
+//        TodoModel(title: "doing", body: "bodyasldjaksdjfl;aksdfkadskflasdklfasldkfadkakdakfakfalkdakdfakdfakdlkjfakdjf;lakjfkldajsfkjadkfjakdjflaasdfasfasdfasdasdfasdfasfdasdfaf", date: "2023. 02. 19"),
+//        TodoModel(title: "dodo", body: "dd", date: "2022. 01. 19")
     ]
 
-    private var doneLists: [TodoModel] = [
-        TodoModel(title: "done", body: "bodyasldjaksdjfl;aksdfkadskflasdklfasldkfadkakdakfakfalkdakdfakdfakd", date: "2023. 01. 11"),
-        TodoModel(title: "done", body: "ddne", date: "2022. 12. 19"),
-        TodoModel(title: "done", body: "ddne", date: "2023. 01. 19"),
-        TodoModel(title: "done", body: "ddne", date: "2023. 01. 19")
+    private var doneLists: [ProjectModel] = [
+//        TodoModel(title: "done", body: "bodyasldjaksdjfl;aksdfkadskflasdklfasldkfadkakdakfakfalkdakdfakdfakd", date: "2023. 01. 11"),
+//        TodoModel(title: "done", body: "ddne", date: "2022. 12. 19"),
+//        TodoModel(title: "done", body: "ddne", date: "2023. 01. 19"),
+//        TodoModel(title: "done", body: "ddne", date: "2023. 01. 19")
     ]
 
     private let sectionHeaderIdentifier: String = "sectionHeaderIdentifier"
-    private var todoDataSource: UICollectionViewDiffableDataSource<Int, TodoModel.ID>?
-    private var doingDataSource: UICollectionViewDiffableDataSource<Int, TodoModel.ID>?
-    private var doneDataSource: UICollectionViewDiffableDataSource<Int, TodoModel.ID>?
+    private var todoDataSource: UICollectionViewDiffableDataSource<Int, ProjectModel.ID>?
+    private var doingDataSource: UICollectionViewDiffableDataSource<Int, ProjectModel.ID>?
+    private var doneDataSource: UICollectionViewDiffableDataSource<Int, ProjectModel.ID>?
     private var currentLongPressedCell: UICollectionViewCell?
 
     init() {
@@ -218,6 +221,10 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let todoModels = realm.objects(TodoModelObject.self)
+        print(todoModels)
+
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         view.addSubview(navigationBar)
         view.addSubview(todoCollectionView)
         view.addSubview(doingCollectionView)
@@ -361,21 +368,21 @@ final class MainViewController: UIViewController {
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
 
-    private func deleteTodoList(with id: TodoModel.ID) {
+    private func deleteTodoList(with id: ProjectModel.ID) {
         guard let index = todoLists.firstIndex(where: { todoModel in
             todoModel.id == id
         }) else { return }
         todoLists.remove(at: index)
     }
 
-    private func deleteDoingList(with id: TodoModel.ID) {
+    private func deleteDoingList(with id: ProjectModel.ID) {
         guard let index = doingLists.firstIndex(where: { todoModel in
             todoModel.id == id
         }) else { return }
         doingLists.remove(at: index)
     }
 
-    private func deleteDoneList(with id: TodoModel.ID) {
+    private func deleteDoneList(with id: ProjectModel.ID) {
         guard let index = doneLists.firstIndex(where: { todoModel in
             todoModel.id == id
         }) else { return }
@@ -397,7 +404,7 @@ final class MainViewController: UIViewController {
         }
     }
 
-    private func getLists(type: KindOfCollectionView) -> [TodoModel] {
+    private func getLists(type: KindOfCollectionView) -> [ProjectModel] {
         switch type {
         case .todoCollectionView:
             return todoLists
@@ -419,7 +426,7 @@ final class MainViewController: UIViewController {
         }
     }
 
-    private func getDataSource(type: KindOfCollectionView, dataSource: UICollectionViewDiffableDataSource<Int, TodoModel.ID>) {
+    private func getDataSource(type: KindOfCollectionView, dataSource: UICollectionViewDiffableDataSource<Int, ProjectModel.ID>) {
         switch type {
         case .todoCollectionView:
             todoDataSource = dataSource
@@ -431,7 +438,7 @@ final class MainViewController: UIViewController {
     }
 
     private func configureDataSource(type: KindOfCollectionView) {
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, TodoModel.ID> { [weak self] cell, _, itemIdentifier in
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, ProjectModel.ID> { [weak self] cell, _, itemIdentifier in
             var contentConfiguration = CollectionContentView.Configutation(type: type)
             guard let todoModel = self?.getLists(type: type).first(where: { todoModel in
                 todoModel.id == itemIdentifier
@@ -446,7 +453,7 @@ final class MainViewController: UIViewController {
             cell.contentConfiguration = contentConfiguration
         }
 
-        let dataSource = UICollectionViewDiffableDataSource<Int, TodoModel.ID>(collectionView: getCollectionView(type: type), cellProvider: { collectionView, indexPath, itemIdentifier in
+        let dataSource = UICollectionViewDiffableDataSource<Int, ProjectModel.ID>(collectionView: getCollectionView(type: type), cellProvider: { collectionView, indexPath, itemIdentifier in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
         })
 
@@ -454,21 +461,21 @@ final class MainViewController: UIViewController {
     }
 
     private func updateTodoSnapshot() {
-        var todoSnapshot = NSDiffableDataSourceSnapshot<Int, TodoModel.ID>()
+        var todoSnapshot = NSDiffableDataSourceSnapshot<Int, ProjectModel.ID>()
         todoSnapshot.appendSections([0])
         todoSnapshot.appendItems(todoLists.map { $0.id }, toSection: 0)
         todoDataSource?.apply(todoSnapshot)
     }
 
     private func updateDoingSnapshot() {
-        var doingSnapshot = NSDiffableDataSourceSnapshot<Int, TodoModel.ID>()
+        var doingSnapshot = NSDiffableDataSourceSnapshot<Int, ProjectModel.ID>()
         doingSnapshot.appendSections([0])
         doingSnapshot.appendItems(doingLists.map { $0.id }, toSection: 0)
         doingDataSource?.apply(doingSnapshot)
     }
 
     private func updateDoneSnapshot() {
-        var doneSnapshot = NSDiffableDataSourceSnapshot<Int, TodoModel.ID>()
+        var doneSnapshot = NSDiffableDataSourceSnapshot<Int, ProjectModel.ID>()
         doneSnapshot.appendSections([0])
         doneSnapshot.appendItems(doneLists.map { $0.id }, toSection: 0)
         doneDataSource?.apply(doneSnapshot)
@@ -553,12 +560,12 @@ extension MainViewController {
 
 // MARK: - DetailViewControllerDelegate
 extension MainViewController: DetailViewDelegate {
-    func addTodo(todoModel: TodoModel) {
+    func addTodo(todoModel: ProjectModel) {
         todoLists.append(todoModel)
         updateTodoSnapshot()
     }
 
-    func editTodo(todoModel: TodoModel, selectedItem: Int) {
+    func editTodo(todoModel: ProjectModel, selectedItem: Int) {
         todoLists[selectedItem] = todoModel
         updateTodoSnapshot()
     }

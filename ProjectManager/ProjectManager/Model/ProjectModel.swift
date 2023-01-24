@@ -2,12 +2,12 @@
 //  TodoModel.swift
 //  ProjectManager
 //
-//  Created by Mangdi on 2023/01/14.
+//  Created by Mangdi on 2023/01/24.
 //
 
 import Foundation
 
-struct TodoModel: Identifiable {
-    let id: UUID = UUID()
+struct ProjectModel: Identifiable {
+    let id: UUID
     var title, body, date: String
 }

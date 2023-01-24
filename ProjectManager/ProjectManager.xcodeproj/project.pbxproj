@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		091AA9FD296ED42900AC71AB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 091AA9FC296ED42900AC71AB /* .swiftlint.yml */; };
+		09C4472A297FAD960044A432 /* TodoModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C44729297FAD960044A432 /* TodoModelObject.swift */; };
 		09C50306297EAA4F00F57012 /* Literal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C50305297EAA4F00F57012 /* Literal.swift */; };
 		09C816C2297293CE00DC54D2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C816C1297293CD00DC54D2 /* DetailViewController.swift */; };
 		09C9BDC82973BD730047E966 /* DetailViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C9BDC72973BD730047E966 /* DetailViewDelegate.swift */; };
@@ -17,7 +18,10 @@
 		09C9CCB82975E1A500C5E6C7 /* CellPopoverViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C9CCB72975E1A500C5E6C7 /* CellPopoverViewMode.swift */; };
 		09CCB2A3296FAB94001F5F28 /* CollectionContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CCB2A2296FAB94001F5F28 /* CollectionContentView.swift */; };
 		09CCBBF62977D568006045B2 /* KindOfCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CCBBF52977D568006045B2 /* KindOfCollectionView.swift */; };
-		09D2D7DB2971AB7500571B7B /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D2D7DA2971AB7500571B7B /* TodoModel.swift */; };
+		09D317A6297FD24E00B47B5F /* ProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D317A5297FD24E00B47B5F /* ProjectModel.swift */; };
+		09D317E429803DE200B47B5F /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D317E329803DE200B47B5F /* RealmManager.swift */; };
+		09D317E7298044BA00B47B5F /* DoingModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D317E6298044BA00B47B5F /* DoingModelObject.swift */; };
+		09D317E9298044DB00B47B5F /* DoneModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D317E8298044DB00B47B5F /* DoneModelObject.swift */; };
 		6C209BACEF2B108233DCF507 /* Pods_ProjectManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473F1A1A0E258DBBBB009A24 /* Pods_ProjectManager.framework */; };
 		C7431F0625F51E1D0094C4CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7431F0525F51E1D0094C4CF /* AppDelegate.swift */; };
 		C7431F0825F51E1D0094C4CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7431F0725F51E1D0094C4CF /* SceneDelegate.swift */; };
@@ -29,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		091AA9FC296ED42900AC71AB /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		09C44729297FAD960044A432 /* TodoModelObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModelObject.swift; sourceTree = "<group>"; };
 		09C50305297EAA4F00F57012 /* Literal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Literal.swift; sourceTree = "<group>"; };
 		09C816C1297293CD00DC54D2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		09C9BDC72973BD730047E966 /* DetailViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewDelegate.swift; sourceTree = "<group>"; };
@@ -38,7 +43,10 @@
 		09C9CCB72975E1A500C5E6C7 /* CellPopoverViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellPopoverViewMode.swift; sourceTree = "<group>"; };
 		09CCB2A2296FAB94001F5F28 /* CollectionContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionContentView.swift; sourceTree = "<group>"; };
 		09CCBBF52977D568006045B2 /* KindOfCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KindOfCollectionView.swift; sourceTree = "<group>"; };
-		09D2D7DA2971AB7500571B7B /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
+		09D317A5297FD24E00B47B5F /* ProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
+		09D317E329803DE200B47B5F /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		09D317E6298044BA00B47B5F /* DoingModelObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingModelObject.swift; sourceTree = "<group>"; };
+		09D317E8298044DB00B47B5F /* DoneModelObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneModelObject.swift; sourceTree = "<group>"; };
 		473F1A1A0E258DBBBB009A24 /* Pods_ProjectManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		952DFBA4A92EADE3C4C81407 /* Pods-ProjectManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectManager.debug.xcconfig"; path = "Target Support Files/Pods-ProjectManager/Pods-ProjectManager.debug.xcconfig"; sourceTree = "<group>"; };
 		C7431F0225F51E1D0094C4CF /* ProjectManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,14 +95,15 @@
 		09CCB2A0296FA26C001F5F28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				09D317E52980442000B47B5F /* RealmContainer */,
 				C7431F0E25F51E1E0094C4CF /* Assets.xcassets */,
-				09D2D7DA2971AB7500571B7B /* TodoModel.swift */,
 				09C9BDC72973BD730047E966 /* DetailViewDelegate.swift */,
 				09C9BDCD2974518A0047E966 /* DetailViewMode.swift */,
 				09C9CCB52975D22F00C5E6C7 /* CellPopoverViewDelegate.swift */,
 				09C9CCB72975E1A500C5E6C7 /* CellPopoverViewMode.swift */,
 				09CCBBF52977D568006045B2 /* KindOfCollectionView.swift */,
 				09C50305297EAA4F00F57012 /* Literal.swift */,
+				09D317A5297FD24E00B47B5F /* ProjectModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -106,6 +115,17 @@
 				C7431F0725F51E1D0094C4CF /* SceneDelegate.swift */,
 			);
 			path = SupportFiles;
+			sourceTree = "<group>";
+		};
+		09D317E52980442000B47B5F /* RealmContainer */ = {
+			isa = PBXGroup;
+			children = (
+				09D317E329803DE200B47B5F /* RealmManager.swift */,
+				09C44729297FAD960044A432 /* TodoModelObject.swift */,
+				09D317E6298044BA00B47B5F /* DoingModelObject.swift */,
+				09D317E8298044DB00B47B5F /* DoneModelObject.swift */,
+			);
+			path = RealmContainer;
 			sourceTree = "<group>";
 		};
 		2B8D9CDE37B15E151187314E /* Pods */ = {
@@ -290,17 +310,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09D317E9298044DB00B47B5F /* DoneModelObject.swift in Sources */,
 				09CCB2A3296FAB94001F5F28 /* CollectionContentView.swift in Sources */,
 				09C9BDC82973BD730047E966 /* DetailViewDelegate.swift in Sources */,
+				09D317E429803DE200B47B5F /* RealmManager.swift in Sources */,
 				09C9BDCE2974518A0047E966 /* DetailViewMode.swift in Sources */,
 				C7431F0A25F51E1D0094C4CF /* MainViewController.swift in Sources */,
 				09C9CCB42975C01200C5E6C7 /* CellPopoverViewController.swift in Sources */,
+				09D317A6297FD24E00B47B5F /* ProjectModel.swift in Sources */,
 				09C9CCB82975E1A500C5E6C7 /* CellPopoverViewMode.swift in Sources */,
 				09C9CCB62975D22F00C5E6C7 /* CellPopoverViewDelegate.swift in Sources */,
+				09C4472A297FAD960044A432 /* TodoModelObject.swift in Sources */,
+				09D317E7298044BA00B47B5F /* DoingModelObject.swift in Sources */,
 				09C50306297EAA4F00F57012 /* Literal.swift in Sources */,
 				C7431F0625F51E1D0094C4CF /* AppDelegate.swift in Sources */,
 				09C816C2297293CE00DC54D2 /* DetailViewController.swift in Sources */,
-				09D2D7DB2971AB7500571B7B /* TodoModel.swift in Sources */,
 				C7431F0825F51E1D0094C4CF /* SceneDelegate.swift in Sources */,
 				09CCBBF62977D568006045B2 /* KindOfCollectionView.swift in Sources */,
 			);

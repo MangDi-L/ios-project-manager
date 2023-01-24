@@ -8,6 +8,6 @@
 import Foundation
 
 protocol DetailViewDelegate: AnyObject {
-    func addTodo(todoModel: TodoModel)
-    func editTodo(todoModel: TodoModel, selectedItem: Int)
+    func addTodo(todoModel: ProjectModel)
+    func editTodo(todoModel: ProjectModel, selectedItem: Int)
 }
