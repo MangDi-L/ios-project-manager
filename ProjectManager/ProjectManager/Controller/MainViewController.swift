@@ -221,8 +221,9 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let todoModels = realm.objects(TodoModelObject.self)
-        print(todoModels)
+        todoLists = RealmManager.shared.fetchProjects(kind: .todoCollectionView)
+        doingLists = RealmManager.shared.fetchProjects(kind: .doingCollectionView)
+        doneLists = RealmManager.shared.fetchProjects(kind: .doneCollectionView)
 
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         view.addSubview(navigationBar)
@@ -565,8 +566,12 @@ extension MainViewController: DetailViewDelegate {
         updateTodoSnapshot()
     }
 
-    func editTodo(todoModel: ProjectModel, selectedItem: Int) {
-        todoLists[selectedItem] = todoModel
+    func editTodo(todoModel: ProjectModel) {
+        guard let index = todoLists.firstIndex(where: { todoModel in
+            todoModel.id == todoModel.id
+        }) else { return }
+
+        todoLists[index] = todoModel
         updateTodoSnapshot()
     }
 }
@@ -643,7 +648,6 @@ extension MainViewController: UICollectionViewDelegate {
         detailViewController.detailViewDelegate = self
         detailViewController.mode = .modify
         detailViewController.todo = todoLists[indexPath.item]
-        detailViewController.selectedItem = indexPath.item
         present(detailViewController, animated: true)
     }
 }

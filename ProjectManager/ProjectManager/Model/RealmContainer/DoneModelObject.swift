@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 class DoneModelObject: Object {
-    @Persisted var id: UUID = UUID()
+    @Persisted var id: UUID
     @Persisted var title: String = ""
     @Persisted var body: String = ""
     @Persisted var date: String = ""

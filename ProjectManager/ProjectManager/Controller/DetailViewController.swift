@@ -86,7 +86,6 @@ final class DetailViewController: UIViewController {
     weak var detailViewDelegate: DetailViewDelegate?
     var todo: ProjectModel?
     var mode: DetailViewMode = .add
-    var selectedItem: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -173,7 +172,9 @@ extension DetailViewController {
         guard let title = titleTextField.text,
               let body = bodyTextView.text else { return }
         let date = convertDateToString(date: datePicker.date)
-        let todoModel = ProjectModel(title: title, body: body, date: date)
+        let id = UUID()
+        let todoModel = ProjectModel(id: id, title: title, body: body, date: date)
+        RealmManager.shared.insertProject(id: id, title: title, body: body, date: date)
 
         detailViewDelegate?.addTodo(todoModel: todoModel)
         dismiss(animated: true)
@@ -186,11 +187,12 @@ extension DetailViewController {
     @objc private func editTodo() {
         guard let title = titleTextField.text,
               let body = bodyTextView.text,
-              let selectedItem = selectedItem else { return }
+              let projectID = todo?.id else { return }
         let date = convertDateToString(date: datePicker.date)
-        let todoModel = ProjectModel(title: title, body: body, date: date)
+        let todoModel = ProjectModel(id: projectID, title: title, body: body, date: date)
+        RealmManager.shared.updateProject(projectModel: todoModel)
 
-        detailViewDelegate?.editTodo(todoModel: todoModel, selectedItem: selectedItem)
+        detailViewDelegate?.editTodo(todoModel: todoModel)
     }
 }
 

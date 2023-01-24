@@ -8,6 +8,13 @@
 import Foundation
 
 struct ProjectModel: Identifiable {
-    let id: UUID
+    var id: UUID
     var title, body, date: String
+
+    init(id: UUID = UUID(), title: String, body: String, date: String) {
+        self.id = id
+        self.title = title
+        self.body = body
+        self.date = date
+    }
 }
