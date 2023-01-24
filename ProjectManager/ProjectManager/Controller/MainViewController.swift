@@ -341,6 +341,7 @@ final class MainViewController: UIViewController {
               let id = todoDataSource?.itemIdentifier(for: indexPath) else { return nil }
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, completion in
             self?.deleteTodoList(with: id)
+            RealmManager.shared.deleteProject(kind: .todoCollectionView, projectID: id)
             self?.updateTodoSnapshot()
             completion(false)
         }
@@ -352,6 +353,7 @@ final class MainViewController: UIViewController {
               let id = doingDataSource?.itemIdentifier(for: indexPath) else { return nil }
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, completion in
             self?.deleteDoingList(with: id)
+            RealmManager.shared.deleteProject(kind: .doingCollectionView, projectID: id)
             self?.updateDoingSnapshot()
             completion(false)
         }
@@ -363,6 +365,7 @@ final class MainViewController: UIViewController {
               let id = doneDataSource?.itemIdentifier(for: indexPath) else { return nil }
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, completion in
             self?.deleteDoneList(with: id)
+            RealmManager.shared.deleteProject(kind: .doneCollectionView, projectID: id)
             self?.updateDoneSnapshot()
             completion(false)
         }
@@ -567,8 +570,8 @@ extension MainViewController: DetailViewDelegate {
     }
 
     func editTodo(todoModel: ProjectModel) {
-        guard let index = todoLists.firstIndex(where: { todoModel in
-            todoModel.id == todoModel.id
+        guard let index = todoLists.firstIndex(where: { projectModel in
+            projectModel.id == todoModel.id
         }) else { return }
 
         todoLists[index] = todoModel
@@ -586,12 +589,16 @@ extension MainViewController: CellPopoverViewDelegate {
             let data = doingLists[cellIndex]
             doingLists.remove(at: cellIndex)
             todoLists.append(data)
+            RealmManager.shared.deleteProject(kind: .doingCollectionView, projectID: data.id)
+            RealmManager.shared.insertProject(kind: .todoCollectionView, projectModel: data)
             updateDoingSnapshot()
             updateTodoSnapshot()
         case .done:
             let data = doneLists[cellIndex]
             doneLists.remove(at: cellIndex)
             todoLists.append(data)
+            RealmManager.shared.deleteProject(kind: .doneCollectionView, projectID: data.id)
+            RealmManager.shared.insertProject(kind: .todoCollectionView, projectModel: data)
             updateDoneSnapshot()
             updateTodoSnapshot()
         }
@@ -604,6 +611,8 @@ extension MainViewController: CellPopoverViewDelegate {
             let data = todoLists[cellIndex]
             todoLists.remove(at: cellIndex)
             doingLists.append(data)
+            RealmManager.shared.deleteProject(kind: .todoCollectionView, projectID: data.id)
+            RealmManager.shared.insertProject(kind: .doingCollectionView, projectModel: data)
             updateTodoSnapshot()
             updateDoingSnapshot()
         case .doing:
@@ -612,6 +621,8 @@ extension MainViewController: CellPopoverViewDelegate {
             let data = doneLists[cellIndex]
             doneLists.remove(at: cellIndex)
             doingLists.append(data)
+            RealmManager.shared.deleteProject(kind: .doneCollectionView, projectID: data.id)
+            RealmManager.shared.insertProject(kind: .doingCollectionView, projectModel: data)
             updateDoneSnapshot()
             updateDoingSnapshot()
         }
@@ -624,12 +635,16 @@ extension MainViewController: CellPopoverViewDelegate {
             let data = todoLists[cellIndex]
             todoLists.remove(at: cellIndex)
             doneLists.append(data)
+            RealmManager.shared.deleteProject(kind: .todoCollectionView, projectID: data.id)
+            RealmManager.shared.insertProject(kind: .doneCollectionView, projectModel: data)
             updateTodoSnapshot()
             updateDoneSnapshot()
         case .doing:
             let data = doingLists[cellIndex]
             doingLists.remove(at: cellIndex)
             doneLists.append(data)
+            RealmManager.shared.deleteProject(kind: .doingCollectionView, projectID: data.id)
+            RealmManager.shared.insertProject(kind: .doneCollectionView, projectModel: data)
             updateDoingSnapshot()
             updateDoneSnapshot()
         case .done:

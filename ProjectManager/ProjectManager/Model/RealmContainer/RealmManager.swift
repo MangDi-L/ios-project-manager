@@ -46,19 +46,41 @@ class RealmManager {
         }
     }
 
-    func insertProject(id: UUID, title: String, body: String, date: String) {
-        try! realm.write {
-            let todoModelObject = TodoModelObject()
-            todoModelObject.id = id
-            todoModelObject.title = title
-            todoModelObject.body = body
-            todoModelObject.date = date
-            realm.add(todoModelObject)
+    func insertProject(kind: KindOfCollectionView, projectModel: ProjectModel) {
+        switch kind {
+        case .todoCollectionView:
+            try! realm.write {
+                let todoModelObject = TodoModelObject()
+                todoModelObject.id = projectModel.id
+                todoModelObject.title = projectModel.title
+                todoModelObject.body = projectModel.body
+                todoModelObject.date = projectModel.date
+                realm.add(todoModelObject)
+            }
+        case .doingCollectionView:
+            try! realm.write {
+                let doingModelObject = DoingModelObject()
+                doingModelObject.id = projectModel.id
+                doingModelObject.title = projectModel.title
+                doingModelObject.body = projectModel.body
+                doingModelObject.date = projectModel.date
+                realm.add(doingModelObject)
+            }
+        case .doneCollectionView:
+            try! realm.write {
+                let doneModelObject = DoneModelObject()
+                doneModelObject.id = projectModel.id
+                doneModelObject.title = projectModel.title
+                doneModelObject.body = projectModel.body
+                doneModelObject.date = projectModel.date
+                realm.add(doneModelObject)
+            }
         }
     }
 
     func updateProject(projectModel: ProjectModel) {
-        let todoModelObject = realm.objects(TodoModelObject.self).filter("id == \(projectModel.id)").first
+        let predicate = NSPredicate(format: "id == %@", projectModel.id as CVarArg)
+        let todoModelObject = realm.objects(TodoModelObject.self).filter(predicate).first
         try! realm.write {
             todoModelObject?.title = projectModel.title
             todoModelObject?.body = projectModel.body
@@ -66,19 +88,19 @@ class RealmManager {
         }
     }
 
-    func deleteProject(kind: KindOfCollectionView, projectMode: ProjectModel) {
+    func deleteProject(kind: KindOfCollectionView, projectID: UUID) {
         switch kind {
         case .todoCollectionView:
             try! realm.write {
-                realm.delete(realm.objects(TodoModelObject.self).filter("id == \(projectMode.id)"))
+                realm.delete(realm.objects(TodoModelObject.self).filter("id == \(projectID)"))
             }
         case .doingCollectionView:
             try! realm.write {
-                realm.delete(realm.objects(DoingModelObject.self).filter("id == \(projectMode.id)"))
+                realm.delete(realm.objects(DoingModelObject.self).filter("id == \(projectID)"))
             }
         case .doneCollectionView:
             try! realm.write {
-                realm.delete(realm.objects(DoneModelObject.self).filter("id == \(projectMode.id)"))
+                realm.delete(realm.objects(DoneModelObject.self).filter("id == \(projectID)"))
             }
         }
     }

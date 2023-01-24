@@ -174,7 +174,7 @@ extension DetailViewController {
         let date = convertDateToString(date: datePicker.date)
         let id = UUID()
         let todoModel = ProjectModel(id: id, title: title, body: body, date: date)
-        RealmManager.shared.insertProject(id: id, title: title, body: body, date: date)
+        RealmManager.shared.insertProject(kind: .todoCollectionView, projectModel: todoModel)
 
         detailViewDelegate?.addTodo(todoModel: todoModel)
         dismiss(animated: true)
