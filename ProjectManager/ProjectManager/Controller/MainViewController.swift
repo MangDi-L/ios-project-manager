@@ -182,26 +182,9 @@ final class MainViewController: UIViewController {
         return collectionView
     }()
 
-    private let realm = try! Realm()
-
-    private var todoLists: [ProjectModel] = [
-//        TodoModel(title: "hi", body: "bodyasldjaksdjfl;aksdfkadskflasdklfasldkfadkakdakfakfalkdakdfakdfakdlkjfakdjf;lakjfkldajsfkjadkfjakdjflaasdfasfasdfasdasdfasdfasfdasdfaf", date: "2023. 01. 17"),
-//        TodoModel(title: "bye", body: "dd", date: "2023. 01. 17"),
-//        TodoModel(title: "asdf", body: "ffff", date: "2023. 01. 18"),
-//        TodoModel(title: "ffff", body: "ffff", date: "2023. 01. 19")
-    ]
-
-    private var doingLists: [ProjectModel] = [
-//        TodoModel(title: "doing", body: "bodyasldjaksdjfl;aksdfkadskflasdklfasldkfadkakdakfakfalkdakdfakdfakdlkjfakdjf;lakjfkldajsfkjadkfjakdjflaasdfasfasdfasdasdfasdfasfdasdfaf", date: "2023. 02. 19"),
-//        TodoModel(title: "dodo", body: "dd", date: "2022. 01. 19")
-    ]
-
-    private var doneLists: [ProjectModel] = [
-//        TodoModel(title: "done", body: "bodyasldjaksdjfl;aksdfkadskflasdklfasldkfadkakdakfakfalkdakdfakdfakd", date: "2023. 01. 11"),
-//        TodoModel(title: "done", body: "ddne", date: "2022. 12. 19"),
-//        TodoModel(title: "done", body: "ddne", date: "2023. 01. 19"),
-//        TodoModel(title: "done", body: "ddne", date: "2023. 01. 19")
-    ]
+    private var todoLists: [ProjectModel] = []
+    private var doingLists: [ProjectModel] = []
+    private var doneLists: [ProjectModel] = []
 
     private let sectionHeaderIdentifier: String = "sectionHeaderIdentifier"
     private var todoDataSource: UICollectionViewDiffableDataSource<Int, ProjectModel.ID>?
@@ -221,11 +204,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        todoLists = RealmManager.shared.fetchProjects(kind: .todoCollectionView)
-        doingLists = RealmManager.shared.fetchProjects(kind: .doingCollectionView)
-        doneLists = RealmManager.shared.fetchProjects(kind: .doneCollectionView)
-
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        fetchLists()
         view.addSubview(navigationBar)
         view.addSubview(todoCollectionView)
         view.addSubview(doingCollectionView)
@@ -315,6 +294,12 @@ final class MainViewController: UIViewController {
             doneCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             doneCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+
+    private func fetchLists() {
+        todoLists = RealmManager.shared.fetchProjects(kind: .todoCollectionView)
+        doingLists = RealmManager.shared.fetchProjects(kind: .doingCollectionView)
+        doneLists = RealmManager.shared.fetchProjects(kind: .doneCollectionView)
     }
 
     private func createCollectionViewLayout(kind: KindOfCollectionView) -> UICollectionViewCompositionalLayout {
@@ -464,10 +449,11 @@ final class MainViewController: UIViewController {
         getDataSource(type: type, dataSource: dataSource)
     }
 
-    private func updateTodoSnapshot() {
+    private func updateTodoSnapshot(_ reloadItemIDs: [ProjectModel.ID] = []) {
         var todoSnapshot = NSDiffableDataSourceSnapshot<Int, ProjectModel.ID>()
         todoSnapshot.appendSections([0])
         todoSnapshot.appendItems(todoLists.map { $0.id }, toSection: 0)
+        todoSnapshot.reloadItems(reloadItemIDs)
         todoDataSource?.apply(todoSnapshot)
     }
 
@@ -575,7 +561,7 @@ extension MainViewController: DetailViewDelegate {
         }) else { return }
 
         todoLists[index] = todoModel
-        updateTodoSnapshot()
+        updateTodoSnapshot([todoLists[index].id])
     }
 }
 

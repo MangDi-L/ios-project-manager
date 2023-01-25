@@ -89,18 +89,20 @@ class RealmManager {
     }
 
     func deleteProject(kind: KindOfCollectionView, projectID: UUID) {
+        let predicate = NSPredicate(format: "id == %@", projectID as CVarArg)
+
         switch kind {
         case .todoCollectionView:
             try! realm.write {
-                realm.delete(realm.objects(TodoModelObject.self).filter("id == \(projectID)"))
+                realm.delete(realm.objects(TodoModelObject.self).filter(predicate))
             }
         case .doingCollectionView:
             try! realm.write {
-                realm.delete(realm.objects(DoingModelObject.self).filter("id == \(projectID)"))
+                realm.delete(realm.objects(DoingModelObject.self).filter(predicate))
             }
         case .doneCollectionView:
             try! realm.write {
-                realm.delete(realm.objects(DoneModelObject.self).filter("id == \(projectID)"))
+                realm.delete(realm.objects(DoneModelObject.self).filter(predicate))
             }
         }
     }
