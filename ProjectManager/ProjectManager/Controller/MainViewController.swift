@@ -6,6 +6,7 @@
 
 import UIKit
 import RealmSwift
+import FirebaseDatabase
 
 final class MainViewController: UIViewController {
 
@@ -225,6 +226,9 @@ final class MainViewController: UIViewController {
         updateDoingSnapshot()
         updateDoneSnapshot()
         updateListCounts()
+
+//        FirebaseManager.shared.addedProject()
+        FirebaseManager.shared.getHistory()
     }
 
     override func viewDidLayoutSubviews() {

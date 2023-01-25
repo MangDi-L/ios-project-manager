@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		091AA9FD296ED42900AC71AB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 091AA9FC296ED42900AC71AB /* .swiftlint.yml */; };
-		099111A329811F85002A4741 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 099111A229811F85002A4741 /* GoogleService-Info.plist */; };
+		0990888529818F0300295AB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0990888429818F0300295AB4 /* GoogleService-Info.plist */; };
+		099111A529815FA7002A4741 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099111A429815FA7002A4741 /* FirebaseManager.swift */; };
 		09C4472A297FAD960044A432 /* TodoModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C44729297FAD960044A432 /* TodoModelObject.swift */; };
 		09C50306297EAA4F00F57012 /* Literal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C50305297EAA4F00F57012 /* Literal.swift */; };
 		09C816C2297293CE00DC54D2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C816C1297293CD00DC54D2 /* DetailViewController.swift */; };
@@ -34,7 +35,8 @@
 
 /* Begin PBXFileReference section */
 		091AA9FC296ED42900AC71AB /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		099111A229811F85002A4741 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0990888429818F0300295AB4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		099111A429815FA7002A4741 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		09C44729297FAD960044A432 /* TodoModelObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModelObject.swift; sourceTree = "<group>"; };
 		09C50305297EAA4F00F57012 /* Literal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Literal.swift; sourceTree = "<group>"; };
 		09C816C1297293CD00DC54D2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				09CCBBF52977D568006045B2 /* KindOfCollectionView.swift */,
 				09C50305297EAA4F00F57012 /* Literal.swift */,
 				09D317A5297FD24E00B47B5F /* ProjectModel.swift */,
+				099111A429815FA7002A4741 /* FirebaseManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -170,7 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				C7431F1325F51E1E0094C4CF /* Info.plist */,
-				099111A229811F85002A4741 /* GoogleService-Info.plist */,
+				0990888429818F0300295AB4 /* GoogleService-Info.plist */,
 				09CCB2A1296FA27F001F5F28 /* SupportFiles */,
 				09CCB2A0296FA26C001F5F28 /* Model */,
 				09CCB29F296FA261001F5F28 /* View */,
@@ -241,7 +244,7 @@
 			files = (
 				091AA9FD296ED42900AC71AB /* .swiftlint.yml in Resources */,
 				C7431F1225F51E1E0094C4CF /* LaunchScreen.storyboard in Resources */,
-				099111A329811F85002A4741 /* GoogleService-Info.plist in Resources */,
+				0990888529818F0300295AB4 /* GoogleService-Info.plist in Resources */,
 				C7431F0F25F51E1E0094C4CF /* Assets.xcassets in Resources */,
 				C7431F0D25F51E1D0094C4CF /* Main.storyboard in Resources */,
 			);
@@ -326,6 +329,7 @@
 				09C9CCB62975D22F00C5E6C7 /* CellPopoverViewDelegate.swift in Sources */,
 				09C4472A297FAD960044A432 /* TodoModelObject.swift in Sources */,
 				09D317E7298044BA00B47B5F /* DoingModelObject.swift in Sources */,
+				099111A529815FA7002A4741 /* FirebaseManager.swift in Sources */,
 				09C50306297EAA4F00F57012 /* Literal.swift in Sources */,
 				C7431F0625F51E1D0094C4CF /* AppDelegate.swift in Sources */,
 				09C816C2297293CE00DC54D2 /* DetailViewController.swift in Sources */,

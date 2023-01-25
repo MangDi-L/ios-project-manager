@@ -115,6 +115,8 @@ final class DetailViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
         configureSubViews()
     }
 
